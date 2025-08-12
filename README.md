@@ -1,7 +1,7 @@
-## healthcare_appointments
+## Healthcare Appointments
 
-healthcare_appointments
+An app for making appointments
 
 #### License
 
-MIT
+y

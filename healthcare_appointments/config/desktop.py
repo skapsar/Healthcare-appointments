@@ -3,8 +3,8 @@ from frappe import _
 def get_data():
 	return [
 		{
-			"module_name": "healthcare_appointments",
+			"module_name": "Healthcare Appointments",
 			"type": "module",
-			"label": _("healthcare_appointments")
+			"label": _("Healthcare Appointments")
 		}
 	]

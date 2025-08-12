@@ -1,11 +1,11 @@
 from . import __version__ as app_version
 
 app_name = "healthcare_appointments"
-app_title = "healthcare_appointments"
-app_publisher = "shaik Apsar"
-app_description = "healthcare_appointments"
+app_title = "Healthcare Appointments"
+app_publisher = "Apsar"
+app_description = "An app for making appointments"
 app_email = "skaapsar8149@gmail.com"
-app_license = "MIT"
+app_license = "y"
 
 # Includes in <head>
 # ------------------

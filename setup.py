@@ -9,8 +9,8 @@ from healthcare_appointments import __version__ as version
 setup(
 	name="healthcare_appointments",
 	version=version,
-	description="healthcare_appointments",
-	author="shaik Apsar",
+	description="An app for making appointments",
+	author="Apsar",
 	author_email="skaapsar8149@gmail.com",
 	packages=find_packages(),
 	zip_safe=False,
