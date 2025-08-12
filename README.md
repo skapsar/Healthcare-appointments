@@ -4,4 +4,3 @@ An app for making appointments
 
 #### License
 
-y
