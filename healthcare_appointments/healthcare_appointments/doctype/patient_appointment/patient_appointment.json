@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format: PA-{YY}{MM}-{DD}-{####}",
  "creation": "2025-08-13 16:05:22.727206",
  "default_view": "List",
  "doctype": "DocType",
@@ -85,10 +86,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-13 16:07:49.128704",
+ "modified": "2025-08-16 11:13:03.132061",
  "modified_by": "Administrator",
  "module": "Healthcare Appointments",
  "name": "Patient Appointment",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

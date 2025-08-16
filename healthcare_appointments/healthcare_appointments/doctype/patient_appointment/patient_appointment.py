@@ -38,6 +38,7 @@ class PatientAppointment(Document):
                 )
     def after_insert(self):
         self.create_sales_invoice()
+
     def create_sales_invoice(self):
         if frappe.db.exists("Sales Invoice", {"patient_appointment": self.name}):
             return
@@ -45,11 +46,11 @@ class PatientAppointment(Document):
 
         invoice = frappe.new_doc("Sales Invoice")
         invoice.customer = customer_name
-        invoice.patient_appointment = self.name  
+        invoice.patient_appointment = self.name
         invoice.due_date = frappe.utils.nowdate()
 
         invoice.append("items", {
-            "item_code": self.service,  
+            "item_code": self.service,
             "qty": 1,
             "rate": self.total_amount
         })
@@ -62,9 +63,8 @@ class PatientAppointment(Document):
 
         invoice.insert(ignore_permissions=True)
         invoice.submit()
-        self.sales_invoice = invoice.name  
-        self.db_set("sales_invoice", invoice.name)  
 
+        self.db_set("sales_invoice", invoice.name)
 
     def get_or_create_customer(self):
         customer = frappe.db.exists("Customer", {"customer_name": self.patient_name})
@@ -77,14 +77,19 @@ class PatientAppointment(Document):
         new_customer.territory = "All Territories"
         new_customer.insert(ignore_permissions=True)
         return new_customer.name
+
     def on_update(self):
+        # Skip on_update logic for first insert
+        if self.flags.in_insert:
+            return
+
         if self.sales_invoice:
             old_invoice = frappe.get_doc("Sales Invoice", self.sales_invoice)
 
             if old_invoice.items[0].item_code != self.get_item_code_from_service() or \
-            old_invoice.items[0].rate != self.total_amount:
+               old_invoice.items[0].rate != self.total_amount:
 
-                if old_invoice.docstatus == 1:  
+                if old_invoice.docstatus == 1:
                     old_invoice.cancel()
 
                 self.create_sales_invoice()
@@ -95,4 +100,3 @@ class PatientAppointment(Document):
         if frappe.db.exists("HealthCare Services", self.service):
             return frappe.db.get_value("HealthCare Services", self.service, "service_name")
         return None
-
