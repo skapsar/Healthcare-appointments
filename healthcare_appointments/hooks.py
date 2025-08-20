@@ -200,3 +200,4 @@ app_license = "y"
 #	"healthcare_appointments.auth.validate"
 # ]
 
+# fixtures=["Web Page"]
